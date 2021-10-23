@@ -3,6 +3,7 @@ int palindrome(char *str){
     while (*(str + i) != '\0' && *(str + i) != '.'){
         i++;
     }
+    if (*str == '\0') return 0;
     for (j = 0; j < i-1; j++){
         if (*(str + j) == ' '){
             if (*(str + j + 1) != *(str + i - j - 1) && *(str + j + 1) != *(str + i - j - 1) - 32 && *(str + j + 1) != *(str + i - j - 1) + 32){
