@@ -1,27 +1,18 @@
 int palindrome(char *str){
-    int i = 0, j;
-    while (*(str + i) != '\0' && *(str + i) != '.'){
-        i++;
-    }
+    int num_car = 0, i = 0;
+    char aux1[50];
     if (*str == '\0') return 0;
-    for (j = 0; j < i-1; j++){
-        if (*(str + j) == ' '){
-            if (*(str + j + 1) != *(str + i - j - 1) && *(str + j + 1) != *(str + i - j - 1) - 32 && *(str + j + 1) != *(str + i - j - 1) + 32){
-                return 0;
-            }
-            j++;
-            i++;
-        }
-        else if (*(str + i - j - 1) == ' '){
-            if (*(str + j) != *(str + i - j - 2) && *(str + j) != *(str + i - j - 2) - 32 && *(str + j) != *(str + i - j - 2) + 32){
-                return 0;
-            }
-            i--;
-            j--;
-        }
-        else if (*(str + j) != *(str + i - j - 1) && *(str + j) != *(str + i - j - 1) - 32 && *(str + j + 1) != *(str + i - j - 1) + 32){
-            return 0;
-        }
-    }
-    return 1;
+    while (*(str + i) != '\0'){
+		if ((*(str + i) >= 65 && *(str + i) <= 90) || (*(str + i) >= 97 && *(str + i) <= 122) || (*(str + i) >= 48 && *(str + i) <= 57)){
+			*(aux1 + num_car) = *(str + i);
+			num_car++;
+		}
+		i++;
+	}
+	for (int k = 0; k < num_car/2; k++){
+		if (*(aux1 + k) != *(aux1 + num_car - k - 1) && *(aux1 + k) != *(aux1 + num_car - k- 1) + 32 && *(aux1 + k) != *(aux1 + num_car - k- 1) - 32){
+			return 0;
+		}
+	}
+	return 1;
 }
