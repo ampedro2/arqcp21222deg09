@@ -3,7 +3,7 @@ int where_is (char *str, char c, int *p){
     int num_times = 0;
     while (*(str + i) != '\0'){
         if (*(str + i) == c){
-            *(p + num_times) = i + 1;
+            *(p + num_times) = i;
             num_times++;
         }
         i++;
