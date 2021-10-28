@@ -11,7 +11,7 @@ char* where_exists(char* str1, char* str2){
 	while(count!=num_car && *(str2 + i)!='\0'){
 		if(count == 0) x = i;	
 		
-		if(*(str2 + i)==*(str1 + count) || *(str2 + i)+32==*(str1 + count) || *(str2 + i)==*(str1 + count)-32){
+		if(*(str2 + i)==*(str1 + count)){
 			count++;
 		}
 		else{
