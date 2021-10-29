@@ -1,4 +1,4 @@
-int num_sets = 0;
+extern int num_sets;
 
 void inc_nsets(){
 	num_sets++;
