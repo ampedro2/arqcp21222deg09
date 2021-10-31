@@ -3,7 +3,7 @@
 # variaveis
 INCLUDES = inc_nsets.h populate.h check.h
 SOURCES = inc_nsets.c populate.c check.c main.c
-OBJFILES = inc_nsets.o populate.o check.o
+OBJFILES = inc_nsets.o populate.o check.o main.o
 EXEC = ex15
 
 # Suffix rules
