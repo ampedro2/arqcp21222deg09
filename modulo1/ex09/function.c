@@ -1,9 +1,10 @@
 int sort_without_reps(int *src, int n, int *dest){
     int i, j;
-    int temp, num_elements = 0;
+    int temp;
+    int num_elements = 0;
     for (i = 0; i < n-1; i++){
         for (j = 0; j < n-i-1; j++){
-            if (*(src + j) > *(src + j + 1)){
+            if (*(src + j) < *(src + j + 1)){
                 temp = *(src + j);
                 *(src + j) = *(src + j + 1);
                 *(src + j + 1) = temp;
