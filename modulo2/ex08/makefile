@@ -8,3 +8,4 @@ run: main
 	gdb -tui main
 clean:
 	rm ∗ . o main
+
