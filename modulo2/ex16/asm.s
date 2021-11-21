@@ -7,7 +7,7 @@
 		movq $3, %rcx
 		imulq %rcx, %rax
 		addq $6, %rax
-		movq $0, %rdx
+		cqo
 		idivq %rcx
 		addq $12, %rax
 		subq num(%rip), %rax
