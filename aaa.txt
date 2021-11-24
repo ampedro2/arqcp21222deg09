@@ -1,0 +1,23 @@
+main: main.o classificacao.o pontuacao.o
+
+	gcc main.o classificacao.o pontuacao.o -o main
+
+main.o: main.c classificacao.h pontuacao.h
+
+	gcc -Wall -g -c main.c -o main.o
+
+calcula_resto.o: classificacao.s
+
+	gcc -Wall -g -c classificacao.s -o classificacao.o
+
+noves_fora.o: pontuacao.c
+
+	gcc -Wall -g -c pontuacao.c -o pontuacao.o
+
+run: main
+
+	./main
+
+clean:
+
+	rm ∗ . o main
