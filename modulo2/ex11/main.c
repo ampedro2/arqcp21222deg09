@@ -4,6 +4,6 @@
 int op1=1, op2=1;
 
 int main(void) {
-    printf("sum2ints = %c\n", test_flags());
+    printf("test_flags = %c\n", test_flags());
     return 0;
 }
