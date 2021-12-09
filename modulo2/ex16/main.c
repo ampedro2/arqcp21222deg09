@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include "asm.h"
 
-long num;
+long num = 6;
 
 int main(void) {
-    scanf("%ld",&num);
-    printf("steps = %d\n", steps());
-    return 0;
+	printf("%d",steps());
+	return 0;
 }

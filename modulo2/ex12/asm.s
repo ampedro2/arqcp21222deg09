@@ -1,21 +1,26 @@
 .section .data
-	.global A, B
+    .global A 
+    .global B 
+
 .section .text
     .global isMultiple
-    isMultiple:
-		movl $0, %edx
-		movl A(%rip), %eax
-		movl B(%rip), %ecx
 
-		divl %ecx
-		
-		cmpl $0, %edx
-		je is_multiple
-		movq $0, %rax
-		jmp end
-		
-	is_multiple:
-		movq $1, %rax
-		
-	end:
+    isMultiple:
+        movl A(%rip), %eax
+        movl B(%rip), %ecx
+        cltd
+        cmpl $0, %ecx  
+        je notMultiple
+        idivl %ecx
+
+        cmpl $0, %edx  
+        je multiple
+
+    notMultiple:
+        movl $0, %eax
+        jmp end
+
+    multiple:
+        movl $1, %eax
+    end:
 		ret

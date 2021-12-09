@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "asm.h"
 
-int A=6, B=5;
+int A = 15;
+int B = 5;
 
-int main(void) {
-    printf("isMultiple = %hhd\n", isMultiple());
-    return 0;
+int main(void){
+    char c = isMultiple();
+    printf("%c", c);
 }

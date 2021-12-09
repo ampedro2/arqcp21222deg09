@@ -1,4 +1,4 @@
 #ifndef ASM_H
 #define ASM_H
-char check_num(void);
+void str_copy_porto(void);
 #endif

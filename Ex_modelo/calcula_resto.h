@@ -1,4 +1,4 @@
 #ifndef ASM_H
 #define ASM_H
-int steps();
+unsigned char calcula_resto(void);
 #endif

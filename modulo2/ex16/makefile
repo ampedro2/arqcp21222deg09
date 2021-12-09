@@ -1,11 +1,9 @@
-main: main.o asm.o
-	gcc main.o asm.o -o main
-main.o: main.c asm.h
-	gcc -Wall -g -c main.c -o main.o
-asm.o: asm.s
-	gcc -Wall -g -c asm.s -o asm.o
-run: main
-	gdb -tui main
-clean:
-	rm ∗ . o main
+compileAll: main.o asm.o
+	gcc -c -g -Wall main.c -o main.o
+	gcc -c -g -Wall asm.s -o asm.o
 
+compileTogether: compileAll
+	gcc -g -Wall main.o asm.o -o mainCompile
+
+run: compileTogether
+	./mainCompile
