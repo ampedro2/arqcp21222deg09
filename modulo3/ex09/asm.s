@@ -1,56 +1,35 @@
 .section .data
-
+	.global num
 	.global x
 	.global ptrvec
-	.global num
- 
+	.comm ptrvec ,2 # declare pointer (2 bytes)
+
 .section .text
-  .global vec_search
+	.global vec_search # short* vec_search()
 
 vec_search:
-  #prologue
-  pushl %ebp
-  movl %esp, %ebp
-  # Save Registers
-  #####################################################
-  pushl %ebx
-  ######################################################
-  
-	movl $0,   	 %eax
-	movl num, 	 %ecx
-	movl $0,   	 %edx
+	movq ptrvec(%rip), %rax
 	
-	cmpl $0, %ecx
-	jz not_found
-		
-	movl ptrvec, %ebx
+	movq num(%rip) , %rcx
 	
-finding:
-		cmpl %ecx, %eax
-		je not_found
-		
-		movw (%ebx), %dx
-		
-		cmpw x, %dx
-		je found
-		
-		incl %eax
-		addl $2, %ebx
-		jmp finding
+	movw x(%rip), %dx
+	
+	
+ciclo:
+	
+	cmpq $0, %rcx
+	je fim
+	
+	cmp (%rax),%dx
+	je found
 
-not_found:
-		movl 0, %eax
-		jmp end 
-		
+	addq $2, %rax
+
+	loop ciclo
+	
 found:
-		movl %ebx, %eax
-		
-end:
-    # Restore Regsiters
-	######################################################
-	popl %ebx
-	######################################################
-  # Epilogue		
-  movl %ebp, %esp # restore the previous stack pointer ("clear" the stack)
-  popl %ebp    # restore the previous stack frame pointer
-  ret
+	ret
+
+fim :
+	mov $0, %rax
+	ret
