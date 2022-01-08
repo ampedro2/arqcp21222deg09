@@ -10,20 +10,21 @@
 vec_search:
 	movq ptrvec(%rip), %rax
 	
-	movq num(%rip) , %rcx
+	movl num(%rip) , %ecx
 	
 	movw x(%rip), %dx
 	
 	
 ciclo:
 	
-	cmpq $0, %rcx
+	cmpl $0, %ecx
 	je fim
 	
 	cmp (%rax),%dx
 	je found
 
 	addq $2, %rax
+	decl %ecx
 
 	loop ciclo
 	
@@ -31,5 +32,5 @@ found:
 	ret
 
 fim :
-	mov $0, %rax
+	movq $0, %rax
 	ret

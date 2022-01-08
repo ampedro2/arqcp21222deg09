@@ -3,7 +3,6 @@
 
 int main(void) {
 	int * smaller;
-	int smaller = sum_smaller(3, 4, smaller);
-	printf("sum_smaller = %d\n", smaller);
+	printf("sum_smaller = %d\n", sum_smaller(3, 4, smaller));
 	return 0;
 }
