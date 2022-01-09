@@ -7,15 +7,19 @@
 .section .text
 	.global calculate
 	calculate:
+		pushq %rbp
+		movq %rsp, %rbp
+		subq $16, %rsp
+		
 		movq $0, %rcx
 		movq $0, %rdx
 		pushq %rdi
 		pushq %rsi
 		addl %edi, %esi
-		movl %esi, sum(%rip)
+		movq %rsi, -8(%rbp)
 		popq %rsi
 		imull %esi, %edi
-		movl %edi, product(%rip)
+		movq %rdi, -16(%rbp)
 		popq %rdi
 		
 		pushq %rdi
@@ -27,7 +31,7 @@
 		movb $'+', %dil
 		movl %r8d, %esi
 		movl %r9d, %edx
-		movl sum(%rip), %ecx
+		movq -8(%rbp), %rcx
 		call print_result
 		popq %rsi
 		popq %rdi
@@ -41,7 +45,7 @@
 		movb $'*', %dil
 		movl %r8d, %esi
 		movl %r9d, %edx
-		movl product(%rip), %ecx
+		movq -16(%rbp), %rcx
 		call print_result
 		popq %rsi
 		popq %rdi
@@ -54,4 +58,7 @@
 		movl %esi, %r9d
 		subl %r9d, %r8d
 		movl %r8d, %eax
+		
+		movq %rbp, %rsp
+		popq %rbp
 		ret
