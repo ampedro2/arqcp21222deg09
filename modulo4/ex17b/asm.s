@@ -1,29 +1,60 @@
 .section .data
 .section .text
-	.global activate_bits
-	activate_bits:	
-		movl $31, %ecx 		#move o numero de vezes que vamos correr o ciclo para rcx
-		movq $1, %r8 		#a máscara que iremos usar
+	.global greater_date
+	greater_date:	
+		movl $0b00000000111111111111111100000000, %ecx
+		movl $0b11111111000000000000000000000000, %edx
+		movl $0b00000000000000000000000011111111, %r8d
 		
-	loop_pos:
-		cmpl $0, %ecx
-		jl end
+		pushq %rdi
+		pushq %rsi
 		
-		cmpl %esi, %ecx
-		jg activate 		#caso esteja dentro do intervalo 
-		cmpl %edx, %ecx
-		jl activate			#caso esteja dentro do intervalo
+		andl %ecx, %edi
+		andl %ecx, %esi
 		
-		decl %ecx
-		jmp loop_pos
+		cmpl %edi, %esi
+		jl date1
+		cmpl %edi, %esi
+		jg date2
 		
-	activate:
-		shll %cl, %r8d		#mete o bit 1 na posicao que queremos ativar
-		orl %r8d, %edi		#ativa o bit correspondente no numero
-		movq $1, %r8
-		decl %ecx
-		jmp loop_pos
+		popq %rsi
+		popq %rdi
+		
+		pushq %rdi
+		pushq %rsi
+		
+		andl %edx, %edi
+		andl %edx, %esi
+		cmpl %edi, %esi
+		jl date1
+		cmpl %edi, %esi
+		jg date2
+		
+		popq %rsi
+		popq %rdi
+		
+		pushq %rdi
+		pushq %rsi
+		
+		andl %r8d, %edi
+		andl %r8d, %esi
+		
+		cmpl %edi, %esi
+		jl date1
+		cmpl %edi, %esi
+		jg date2
+	
+	date1:
+		popq %rsi
+		popq %rdi
+		movl %edi, %eax
+		jmp end
+	
+	date2:
+		popq %rsi
+		popq %rdi
+		movl %esi, %eax
+		jmp end
 	
 	end:
-		movl %edi, %eax 
 		ret

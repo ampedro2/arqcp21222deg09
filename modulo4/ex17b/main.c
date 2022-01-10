@@ -2,7 +2,7 @@
 #include "asm.h"
 
 int main(void) {
-	printf("Result = %d\n", activate_bits(0, 31, 0));
+	printf("Result = %d\n", greater_date(23, 31));
 	return 0;
 }
 

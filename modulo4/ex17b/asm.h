@@ -1,4 +1,4 @@
 #ifndef ASM_H
 #define ASM_H
-int activate_bits(int a, int left, int right);
+int greater_date(unsigned int date1, unsigned int date2);
 #endif
